@@ -19,4 +19,9 @@ class Problem extends Model
     {
         return $this->hasMany(Solution::class);
     }
+
+    public function testCases()
+    {
+        return $this->hasMany(TestCase::class);
+    }
 }
