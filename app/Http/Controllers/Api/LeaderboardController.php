@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class LeaderboardController extends Controller
+/**
+ * @OA\Tag(
+ *     name="Leaderboard",
+ *     description="API Endpoints of Leaderboard"
+ * )
+ */
+class LeaderboardController extends BaseController
 {
     public function index()
     {

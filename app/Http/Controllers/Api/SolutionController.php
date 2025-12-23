@@ -8,8 +8,37 @@ use App\Http\Resources\SolutionResource;
 use App\Models\Solution;
 use App\Services\CodeValidationService;
 
-class SolutionController extends Controller
+/**
+ * @OA\Tag(
+ *     name="Solutions",
+ *     description="API Endpoints of Solutions"
+ * )
+ */
+class SolutionController extends BaseController
 {
+    /**
+     * @OA\Post(
+     *      path="/api/solutions",
+     *      operationId="storeSolution",
+     *      tags={"Solutions"},
+     *      summary="Submit a solution",
+     *      description="Submit code for a problem",
+     *      security={{"sanctum":{}}},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              required={"problem_id","code"},
+     *              @OA\Property(property="problem_id", type="integer"),
+     *              @OA\Property(property="code", type="string"),
+     *              @OA\Property(property="time_taken", type="integer"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     * )
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -64,7 +93,7 @@ class SolutionController extends Controller
         $solutions = Solution::where('user_id', $request->user()->id)
             ->with(['problem:id,title']) // optimize query
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(15);
 
         return SolutionResource::collection($solutions);
     }
