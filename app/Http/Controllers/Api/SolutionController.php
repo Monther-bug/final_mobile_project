@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\SolutionResource;
 use App\Models\Solution;
+use App\Services\CodeValidationService;
 
 class SolutionController extends Controller
 {
@@ -22,6 +23,9 @@ class SolutionController extends Controller
             'code' => $validated['code'],
             'status' => 'pending', 
         ]);
+
+        $validationService = new CodeValidationService();
+        $validationService->validate($solution);
 
         return new SolutionResource($solution);
     }
