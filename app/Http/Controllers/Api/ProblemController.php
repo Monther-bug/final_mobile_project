@@ -13,4 +13,10 @@ class ProblemController extends Controller
     {
         return new ProblemResource(Problem::with('testCases')->findOrFail($id));
     }
+
+    public function hint($id)
+    {
+        $problem = Problem::findOrFail($id);
+        return response()->json(['hint' => $problem->hint]);
+    }
 }

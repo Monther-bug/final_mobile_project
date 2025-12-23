@@ -22,6 +22,7 @@ class SolutionController extends Controller
             'problem_id' => $validated['problem_id'],
             'code' => $validated['code'],
             'status' => 'pending', 
+            'time_taken' => $request->input('time_taken'),
         ]);
 
         $validationService = new CodeValidationService();
@@ -56,5 +57,15 @@ class SolutionController extends Controller
         $solution->delete();
 
         return response()->json(['message' => 'Solution deleted']);
+    }
+
+    public function history(Request $request)
+    {
+        $solutions = Solution::where('user_id', $request->user()->id)
+            ->with(['problem:id,title']) // optimize query
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return SolutionResource::collection($solutions);
     }
 }
