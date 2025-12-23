@@ -17,12 +17,27 @@ class CodeValidationService
         foreach ($testCases as $testCase) {
             $output = $this->simulateExecution($solution->code, $testCase->input, $testCase->expected_output);
 
-            if ($output !== $testCase->expected_output) {
+        if ($output !== $testCase->expected_output) {
                 $passed = false;
                 break;
             }
         }
-    // ...
+
+        $solution->update([
+            'status' => $passed ? 'passed' : 'failed',
+        ]);
+
+        if ($passed) {
+            Progress::updateOrCreate(
+                [
+                    'user_id' => $solution->user_id,
+                    'exercise_id' => $solution->problem->exercise_id,
+                ],
+                [
+                    'is_completed' => true,
+                ]
+            );
+        }
     }
 
     private function simulateExecution($code, $input, $expectedOutput)

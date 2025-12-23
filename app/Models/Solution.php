@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
 {
+    protected $guarded = [];
     public function problem()
     {
         return $this->belongsTo(Problem::class);
