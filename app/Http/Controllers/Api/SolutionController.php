@@ -34,9 +34,7 @@ class SolutionController extends Controller
     {
         $solution = Solution::findOrFail($id);
 
-        if ($solution->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+        \Illuminate\Support\Facades\Gate::authorize('update', $solution);
 
         $validated = $request->validate([
             'code' => 'required|string',
@@ -53,9 +51,7 @@ class SolutionController extends Controller
     {
         $solution = Solution::findOrFail($id);
 
-        if ($solution->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+        \Illuminate\Support\Facades\Gate::authorize('delete', $solution);
 
         $solution->delete();
 
