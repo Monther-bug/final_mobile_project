@@ -91,7 +91,7 @@ class SolutionController extends BaseController
     public function history(Request $request)
     {
         $solutions = Solution::where('user_id', $request->user()->id)
-            ->with(['problem:id,title']) // optimize query
+            ->with(['problem:id,title'])
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
