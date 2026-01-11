@@ -439,6 +439,197 @@ class ExerciseSeeder extends Seeder
                     ],
                 ],
             ],
+            // Searching Category
+            [
+                'title' => 'Search Techniques',
+                'description' => 'Learn various searching algorithms and techniques.',
+                'category' => 'Searching',
+                'problems' => [
+                    [
+                        'title' => 'Linear Search',
+                        'content' => "Implement linear search to find the index of a target element in an array.\n\nReturn -1 if the element is not found.\n\nExample:\nInput: arr = [5, 3, 8, 4, 2], target = 8\nOutput: 2",
+                        'difficulty' => 'easy',
+                        'hint' => 'Iterate through each element and compare with the target.',
+                        'test_cases' => [
+                            ['input' => 'arr=[5,3,8,4,2], target=8', 'expected_output' => '2'],
+                            ['input' => 'arr=[1,2,3], target=5', 'expected_output' => '-1'],
+                            ['input' => 'arr=[7], target=7', 'expected_output' => '0'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Find First and Last Position',
+                        'content' => "Given a sorted array and a target value, find the starting and ending position of the target.\n\nReturn [-1, -1] if target is not found.\n\nExample:\nInput: nums = [5,7,7,8,8,10], target = 8\nOutput: [3, 4]",
+                        'difficulty' => 'medium',
+                        'hint' => 'Use binary search twice - once to find the leftmost position and once for the rightmost.',
+                        'test_cases' => [
+                            ['input' => 'nums=[5,7,7,8,8,10], target=8', 'expected_output' => '[3, 4]'],
+                            ['input' => 'nums=[5,7,7,8,8,10], target=6', 'expected_output' => '[-1, -1]'],
+                            ['input' => 'nums=[1], target=1', 'expected_output' => '[0, 0]'],
+                        ],
+                    ],
+                ],
+            ],
+            // Sorting Category
+            [
+                'title' => 'Advanced Sorting',
+                'description' => 'Master advanced sorting algorithms and techniques.',
+                'category' => 'Sorting',
+                'problems' => [
+                    [
+                        'title' => 'Quick Sort',
+                        'content' => "Implement the quick sort algorithm.\n\nQuick sort uses divide-and-conquer:\n1. Pick a pivot element\n2. Partition array around pivot\n3. Recursively sort subarrays\n\nExample:\nInput: [10, 7, 8, 9, 1, 5]\nOutput: [1, 5, 7, 8, 9, 10]",
+                        'difficulty' => 'hard',
+                        'hint' => 'Choose the last element as pivot, partition the array, then recursively sort.',
+                        'test_cases' => [
+                            ['input' => '[10, 7, 8, 9, 1, 5]', 'expected_output' => '[1, 5, 7, 8, 9, 10]'],
+                            ['input' => '[3, 2, 1]', 'expected_output' => '[1, 2, 3]'],
+                            ['input' => '[1]', 'expected_output' => '[1]'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Sort Colors',
+                        'content' => "Given an array with n objects colored red, white, or blue (0, 1, 2), sort them in-place.\n\nExample:\nInput: [2, 0, 2, 1, 1, 0]\nOutput: [0, 0, 1, 1, 2, 2]\n\nSolve it without using the library's sort function.",
+                        'difficulty' => 'medium',
+                        'hint' => 'Use the Dutch National Flag algorithm with three pointers.',
+                        'test_cases' => [
+                            ['input' => '[2, 0, 2, 1, 1, 0]', 'expected_output' => '[0, 0, 1, 1, 2, 2]'],
+                            ['input' => '[2, 0, 1]', 'expected_output' => '[0, 1, 2]'],
+                            ['input' => '[0]', 'expected_output' => '[0]'],
+                        ],
+                    ],
+                ],
+            ],
+            // Bit Manipulation Category
+            [
+                'title' => 'Bit Manipulation Basics',
+                'description' => 'Learn to work with binary operations and bit manipulation.',
+                'category' => 'Bit Manipulation',
+                'problems' => [
+                    [
+                        'title' => 'Single Number',
+                        'content' => "Given a non-empty array where every element appears twice except for one, find that single one.\n\nExample:\nInput: [4, 1, 2, 1, 2]\nOutput: 4\n\nSolve in linear time using constant extra space.",
+                        'difficulty' => 'easy',
+                        'hint' => 'Use XOR operation. XOR of a number with itself is 0, and XOR with 0 is the number.',
+                        'test_cases' => [
+                            ['input' => '[4, 1, 2, 1, 2]', 'expected_output' => '4'],
+                            ['input' => '[2, 2, 1]', 'expected_output' => '1'],
+                            ['input' => '[1]', 'expected_output' => '1'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Count Set Bits',
+                        'content' => "Count the number of 1 bits (set bits) in the binary representation of a number.\n\nExample:\nInput: 11 (binary: 1011)\nOutput: 3\n\nThis is also known as the Hamming weight.",
+                        'difficulty' => 'easy',
+                        'hint' => 'Use n & (n-1) to clear the rightmost set bit, counting iterations.',
+                        'test_cases' => [
+                            ['input' => '11', 'expected_output' => '3'],
+                            ['input' => '128', 'expected_output' => '1'],
+                            ['input' => '255', 'expected_output' => '8'],
+                        ],
+                    ],
+                ],
+            ],
+            // Dynamic Programming Category
+            [
+                'title' => 'Dynamic Programming Intro',
+                'description' => 'Introduction to dynamic programming concepts and techniques.',
+                'category' => 'Dynamic Programming',
+                'problems' => [
+                    [
+                        'title' => 'Climbing Stairs',
+                        'content' => "You are climbing a staircase with n steps. Each time you can climb 1 or 2 steps.\n\nHow many distinct ways can you climb to the top?\n\nExample:\nInput: n = 3\nOutput: 3 (1+1+1, 1+2, 2+1)",
+                        'difficulty' => 'easy',
+                        'hint' => 'This is similar to Fibonacci. ways(n) = ways(n-1) + ways(n-2).',
+                        'test_cases' => [
+                            ['input' => '3', 'expected_output' => '3'],
+                            ['input' => '5', 'expected_output' => '8'],
+                            ['input' => '1', 'expected_output' => '1'],
+                        ],
+                    ],
+                    [
+                        'title' => 'House Robber',
+                        'content' => "You are a robber planning to rob houses along a street. Each house has money, but you cannot rob two adjacent houses.\n\nFind the maximum amount you can rob.\n\nExample:\nInput: [2, 7, 9, 3, 1]\nOutput: 12 (rob house 1, 3, 5: 2 + 9 + 1 = 12)",
+                        'difficulty' => 'medium',
+                        'hint' => 'For each house, decide: max(rob this + dp[i-2], skip and take dp[i-1]).',
+                        'test_cases' => [
+                            ['input' => '[2, 7, 9, 3, 1]', 'expected_output' => '12'],
+                            ['input' => '[1, 2, 3, 1]', 'expected_output' => '4'],
+                            ['input' => '[2, 1, 1, 2]', 'expected_output' => '4'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Longest Increasing Subsequence',
+                        'content' => "Find the length of the longest strictly increasing subsequence.\n\nExample:\nInput: [10, 9, 2, 5, 3, 7, 101, 18]\nOutput: 4 (The LIS is [2, 3, 7, 101])\n\nA subsequence doesn't need to be contiguous.",
+                        'difficulty' => 'hard',
+                        'hint' => 'Use DP where dp[i] = length of LIS ending at index i. Or use binary search for O(n log n).',
+                        'test_cases' => [
+                            ['input' => '[10, 9, 2, 5, 3, 7, 101, 18]', 'expected_output' => '4'],
+                            ['input' => '[0, 1, 0, 3, 2, 3]', 'expected_output' => '4'],
+                            ['input' => '[7, 7, 7, 7]', 'expected_output' => '1'],
+                        ],
+                    ],
+                ],
+            ],
+            // Trees Category
+            [
+                'title' => 'Binary Tree Basics',
+                'description' => 'Learn fundamental binary tree operations and traversals.',
+                'category' => 'Trees',
+                'problems' => [
+                    [
+                        'title' => 'Maximum Depth of Binary Tree',
+                        'content' => "Find the maximum depth (height) of a binary tree.\n\nThe maximum depth is the number of nodes along the longest path from root to leaf.\n\nExample:\nInput: [3, 9, 20, null, null, 15, 7]\nOutput: 3",
+                        'difficulty' => 'easy',
+                        'hint' => 'Use recursion: depth = 1 + max(depth(left), depth(right)).',
+                        'test_cases' => [
+                            ['input' => '[3, 9, 20, null, null, 15, 7]', 'expected_output' => '3'],
+                            ['input' => '[1, null, 2]', 'expected_output' => '2'],
+                            ['input' => '[]', 'expected_output' => '0'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Invert Binary Tree',
+                        'content' => "Invert a binary tree (mirror it).\n\nExample:\nInput:     4\n         /   \\\n        2     7\n       / \\   / \\\n      1   3 6   9\n\nOutput:    4\n         /   \\\n        7     2\n       / \\   / \\\n      9   6 3   1",
+                        'difficulty' => 'easy',
+                        'hint' => 'Recursively swap the left and right children of each node.',
+                        'test_cases' => [
+                            ['input' => '[4,2,7,1,3,6,9]', 'expected_output' => '[4,7,2,9,6,3,1]'],
+                            ['input' => '[2,1,3]', 'expected_output' => '[2,3,1]'],
+                            ['input' => '[]', 'expected_output' => '[]'],
+                        ],
+                    ],
+                ],
+            ],
+            // Graphs Category
+            [
+                'title' => 'Graph Traversal',
+                'description' => 'Learn graph traversal algorithms like BFS and DFS.',
+                'category' => 'Graphs',
+                'problems' => [
+                    [
+                        'title' => 'Number of Islands',
+                        'content' => "Given a 2D grid of '1's (land) and '0's (water), count the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.\n\nExample:\nInput: [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\nOutput: 3",
+                        'difficulty' => 'medium',
+                        'hint' => 'Use DFS or BFS to explore and mark visited land cells.',
+                        'test_cases' => [
+                            ['input' => '[[1,1,0],[1,0,0],[0,0,1]]', 'expected_output' => '2'],
+                            ['input' => '[[1,1,1],[0,1,0],[1,1,1]]', 'expected_output' => '1'],
+                            ['input' => '[[0,0,0]]', 'expected_output' => '0'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Clone Graph',
+                        'content' => "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.\n\nEach node contains a value and a list of its neighbors.",
+                        'difficulty' => 'medium',
+                        'hint' => 'Use a hash map to track visited nodes and their clones. Use BFS or DFS.',
+                        'test_cases' => [
+                            ['input' => '[[2,4],[1,3],[2,4],[1,3]]', 'expected_output' => '[[2,4],[1,3],[2,4],[1,3]]'],
+                            ['input' => '[[]]', 'expected_output' => '[[]]'],
+                            ['input' => '[]', 'expected_output' => '[]'],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }

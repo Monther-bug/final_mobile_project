@@ -61,6 +61,16 @@ class CategoryController extends BaseController
             'recursion' => 'autorenew',
             'sorting' => 'sort',
             'searching' => 'search',
+            'bit manipulation' => 'memory',
+            'dynamic programming' => 'trending_up',
+            'trees' => 'park',
+            'graphs' => 'hub',
+            'greedy' => 'speed',
+            'backtracking' => 'undo',
+            'hash tables' => 'tag',
+            'heaps' => 'stacked_bar_chart',
+            'queues' => 'queue',
+            'design' => 'architecture',
         ];
 
         return $icons[strtolower($category)] ?? 'code';
