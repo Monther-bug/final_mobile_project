@@ -30,6 +30,28 @@ class CodeValidationService
         ]);
 
         if ($passed) {
+            // Update user streak
+            $solution->user->updateStreak();
+            
+            // Award points based on difficulty
+            $points = match (strtolower($problem->difficulty ?? 'easy')) {
+                'easy' => 10,
+                'medium' => 25,
+                'hard' => 50,
+                default => 10,
+            };
+            
+            // Only award points if this is the first time solving this problem
+            $previouslySolved = Solution::where('user_id', $solution->user_id)
+                ->where('problem_id', $solution->problem_id)
+                ->where('id', '!=', $solution->id)
+                ->where('status', 'passed')
+                ->exists();
+            
+            if (!$previouslySolved) {
+                $solution->user->increment('total_points', $points);
+            }
+
             Progress::updateOrCreate(
                 [
                     'user_id' => $solution->user_id,
