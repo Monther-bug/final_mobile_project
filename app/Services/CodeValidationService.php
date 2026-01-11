@@ -13,11 +13,12 @@ class CodeValidationService
         $testCases = $problem->testCases;
         
         $passed = true;
+        $lastOutput = '';
 
         foreach ($testCases as $testCase) {
-            $output = $this->simulateExecution($solution->code, $testCase->input, $testCase->expected_output);
+            $lastOutput = $this->simulateExecution($solution->code, $testCase->input, $testCase->expected_output);
 
-        if ($output !== $testCase->expected_output) {
+            if ($lastOutput !== $testCase->expected_output) {
                 $passed = false;
                 break;
             }
@@ -25,6 +26,7 @@ class CodeValidationService
 
         $solution->update([
             'status' => $passed ? 'passed' : 'failed',
+            'output' => $lastOutput,
         ]);
 
         if ($passed) {

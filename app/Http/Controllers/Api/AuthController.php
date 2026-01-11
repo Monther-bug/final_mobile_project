@@ -55,6 +55,14 @@ class AuthController extends BaseController
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'user' => $user,
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out successfully']);
     }
 }

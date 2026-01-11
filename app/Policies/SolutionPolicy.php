@@ -21,7 +21,7 @@ class SolutionPolicy
      */
     public function view(User $user, Solution $solution): bool
     {
-        return false;
+        return $user->id === $solution->user_id;
     }
 
     /**

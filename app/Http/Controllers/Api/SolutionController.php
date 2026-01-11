@@ -60,6 +60,15 @@ class SolutionController extends BaseController
         return new SolutionResource($solution);
     }
 
+    public function show(Request $request, $id)
+    {
+        $solution = Solution::findOrFail($id);
+
+        \Illuminate\Support\Facades\Gate::authorize('view', $solution);
+
+        return new SolutionResource($solution);
+    }
+
     public function update(Request $request, $id)
     {
         $solution = Solution::findOrFail($id);

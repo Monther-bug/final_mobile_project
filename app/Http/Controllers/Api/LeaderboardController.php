@@ -26,6 +26,15 @@ class LeaderboardController extends BaseController
         ->take(10)
         ->get();
 
-        return response()->json($users);
+        $leaderboard = $users->map(function ($user, $index) {
+            return [
+                'rank' => $index + 1,
+                'user_name' => $user->name,
+                'problems_solved' => $user->solutions_count,
+                'total_score' => $user->total_points,
+            ];
+        });
+
+        return response()->json($leaderboard);
     }
 }

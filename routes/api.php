@@ -29,9 +29,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('solutions', [SolutionController::class, 'store']);
     Route::put('solutions/{solution}', [SolutionController::class, 'update']);
     Route::delete('solutions/{solution}', [SolutionController::class, 'destroy']);
+    Route::get('solutions/{solution}', [SolutionController::class, 'show']);
     Route::get('user/history', [SolutionController::class, 'history']);
     
+    Route::get('user/progress', [ProgressController::class, 'index']);
     Route::post('progress', [ProgressController::class, 'update']);
     
     Route::get('problems/{problem}/hint', [ProblemController::class, 'hint']);
+    
+    Route::post('/logout', [AuthController::class, 'logout']);
 });

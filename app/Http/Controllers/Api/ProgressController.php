@@ -8,6 +8,12 @@ use App\Models\Progress;
 
 class ProgressController extends Controller
 {
+    public function index(Request $request)
+    {
+        $progress = Progress::where('user_id', $request->user()->id)->get();
+        return response()->json($progress);
+    }
+
     public function update(Request $request)
     {
         $validated = $request->validate([
