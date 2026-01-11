@@ -44,6 +44,7 @@ class SolutionController extends BaseController
         $validated = $request->validate([
             'problem_id' => 'required|exists:problems,id',
             'code' => 'required|string',
+            'language' => 'sometimes|string|in:python,javascript',
         ]);
 
         $solution = Solution::create([
@@ -55,9 +56,21 @@ class SolutionController extends BaseController
         ]);
 
         $validationService = new CodeValidationService();
-        $validationService->validate($solution);
+        $validationResult = $validationService->validate($solution);
 
-        return new SolutionResource($solution);
+        // Refresh solution to get updated data
+        $solution->refresh();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'solution' => new SolutionResource($solution),
+                'validation' => $validationResult,
+            ],
+            'message' => $validationResult['status'] === 'passed' 
+                ? 'All test cases passed!' 
+                : 'Some test cases failed.',
+        ]);
     }
 
     public function show(Request $request, $id)

@@ -30,6 +30,8 @@ class ExerciseSeeder extends Seeder
                     'content' => $problemData['content'],
                     'difficulty' => $problemData['difficulty'],
                     'hint' => $problemData['hint'] ?? null,
+                    'function_name' => $problemData['function_name'],
+                    'input_type' => $problemData['input_type'] ?? 'auto',
                 ]);
 
                 foreach ($problemData['test_cases'] as $testCase) {
@@ -54,19 +56,22 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Sum of Array',
-                        'content' => "Write a function that takes an array of integers and returns the sum of all elements.\n\nExample:\nInput: [1, 2, 3, 4, 5]\nOutput: 15\n\nConstraints:\n- Array length: 1-1000\n- Elements: -1000 to 1000",
+                        'content' => "Write a function called `sum_array` that takes an array of integers and returns the sum of all elements.\n\n**Function Signature:**\n```python\ndef sum_array(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [1, 2, 3, 4, 5]\n- Output: 15\n\n**Constraints:**\n- Array length: 1-1000\n- Elements: -1000 to 1000",
                         'difficulty' => 'easy',
-                        'hint' => 'Use a loop to iterate through each element and add it to a running total.',
+                        'function_name' => 'sum_array',
+                        'hint' => 'Use a loop to iterate through each element and add it to a running total, or use the built-in sum() function.',
                         'test_cases' => [
                             ['input' => '[1, 2, 3, 4, 5]', 'expected_output' => '15'],
                             ['input' => '[10, -5, 3]', 'expected_output' => '8'],
                             ['input' => '[0]', 'expected_output' => '0'],
+                            ['input' => '[-1, -2, -3]', 'expected_output' => '-6'],
                         ],
                     ],
                     [
                         'title' => 'Find Maximum',
-                        'content' => "Write a function that finds the maximum value in an array of integers.\n\nExample:\nInput: [3, 7, 2, 9, 1]\nOutput: 9\n\nConstraints:\n- Array length: 1-1000\n- Elements: -10000 to 10000",
+                        'content' => "Write a function called `find_max` that finds the maximum value in an array of integers.\n\n**Function Signature:**\n```python\ndef find_max(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [3, 7, 2, 9, 1]\n- Output: 9\n\n**Constraints:**\n- Array length: 1-1000\n- Elements: -10000 to 10000",
                         'difficulty' => 'easy',
+                        'function_name' => 'find_max',
                         'hint' => 'Start with the first element as the maximum, then compare with each subsequent element.',
                         'test_cases' => [
                             ['input' => '[3, 7, 2, 9, 1]', 'expected_output' => '9'],
@@ -76,13 +81,26 @@ class ExerciseSeeder extends Seeder
                     ],
                     [
                         'title' => 'Reverse Array',
-                        'content' => "Write a function that reverses an array in place.\n\nExample:\nInput: [1, 2, 3, 4, 5]\nOutput: [5, 4, 3, 2, 1]\n\nConstraints:\n- Array length: 0-1000",
+                        'content' => "Write a function called `reverse_array` that reverses an array.\n\n**Function Signature:**\n```python\ndef reverse_array(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [1, 2, 3, 4, 5]\n- Output: [5, 4, 3, 2, 1]\n\n**Constraints:**\n- Array length: 0-1000",
                         'difficulty' => 'easy',
-                        'hint' => 'Use two pointers, one at the start and one at the end, and swap elements while moving towards the center.',
+                        'function_name' => 'reverse_array',
+                        'hint' => 'Use slicing arr[::-1] or the reversed() function.',
                         'test_cases' => [
-                            ['input' => '[1, 2, 3, 4, 5]', 'expected_output' => '[5, 4, 3, 2, 1]'],
-                            ['input' => '[1, 2]', 'expected_output' => '[2, 1]'],
+                            ['input' => '[1, 2, 3, 4, 5]', 'expected_output' => '[5,4,3,2,1]'],
+                            ['input' => '[1, 2]', 'expected_output' => '[2,1]'],
                             ['input' => '[]', 'expected_output' => '[]'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Find Average',
+                        'content' => "Write a function called `find_average` that calculates the average of an array of numbers.\n\n**Function Signature:**\n```python\ndef find_average(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [1, 2, 3, 4, 5]\n- Output: 3.0\n\n**Constraints:**\n- Array length: 1-1000\n- Return a float",
+                        'difficulty' => 'easy',
+                        'function_name' => 'find_average',
+                        'hint' => 'Divide the sum of all elements by the count of elements.',
+                        'test_cases' => [
+                            ['input' => '[1, 2, 3, 4, 5]', 'expected_output' => '3.0'],
+                            ['input' => '[10, 20]', 'expected_output' => '15.0'],
+                            ['input' => '[5]', 'expected_output' => '5.0'],
                         ],
                     ],
                 ],
@@ -94,19 +112,21 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Two Sum',
-                        'content' => "Given an array of integers and a target sum, find two numbers that add up to the target.\n\nReturn the indices of the two numbers.\n\nExample:\nInput: nums = [2, 7, 11, 15], target = 9\nOutput: [0, 1] (because nums[0] + nums[1] = 9)\n\nConstraints:\n- Each input has exactly one solution\n- You may not use the same element twice",
+                        'content' => "Write a function called `two_sum` that finds two numbers in an array that add up to a target.\n\n**Function Signature:**\n```python\ndef two_sum(nums, target):\n    # Your code here\n```\n\n**Example:**\n- Input: nums=[2, 7, 11, 15], target=9\n- Output: [0, 1] (because nums[0] + nums[1] = 9)\n\n**Constraints:**\n- Each input has exactly one solution\n- You may not use the same element twice",
                         'difficulty' => 'medium',
+                        'function_name' => 'two_sum',
                         'hint' => 'Consider using a hash map to store values you\'ve seen and their indices.',
                         'test_cases' => [
-                            ['input' => 'nums=[2,7,11,15], target=9', 'expected_output' => '[0, 1]'],
-                            ['input' => 'nums=[3,2,4], target=6', 'expected_output' => '[1, 2]'],
-                            ['input' => 'nums=[3,3], target=6', 'expected_output' => '[0, 1]'],
+                            ['input' => 'nums=[2,7,11,15], target=9', 'expected_output' => '[0,1]'],
+                            ['input' => 'nums=[3,2,4], target=6', 'expected_output' => '[1,2]'],
+                            ['input' => 'nums=[3,3], target=6', 'expected_output' => '[0,1]'],
                         ],
                     ],
                     [
                         'title' => 'Container With Most Water',
-                        'content' => "Given n non-negative integers representing heights of vertical lines, find two lines that together with the x-axis form a container that holds the most water.\n\nExample:\nInput: [1, 8, 6, 2, 5, 4, 8, 3, 7]\nOutput: 49\n\nThe lines at index 1 and 8 form a container that can hold 49 units of water.",
+                        'content' => "Write a function called `max_area` that finds the container that holds the most water.\n\n**Function Signature:**\n```python\ndef max_area(height):\n    # Your code here\n```\n\n**Example:**\n- Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]\n- Output: 49",
                         'difficulty' => 'medium',
+                        'function_name' => 'max_area',
                         'hint' => 'Use two pointers starting from both ends. Move the pointer with the smaller height inward.',
                         'test_cases' => [
                             ['input' => '[1, 8, 6, 2, 5, 4, 8, 3, 7]', 'expected_output' => '49'],
@@ -124,9 +144,10 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Reverse String',
-                        'content' => "Write a function that reverses a string.\n\nExample:\nInput: \"hello\"\nOutput: \"olleh\"\n\nConstraints:\n- String length: 0-10000\n- Contains printable ASCII characters",
+                        'content' => "Write a function called `reverse_string` that reverses a string.\n\n**Function Signature:**\n```python\ndef reverse_string(s):\n    # Your code here\n```\n\n**Example:**\n- Input: \"hello\"\n- Output: \"olleh\"",
                         'difficulty' => 'easy',
-                        'hint' => 'You can convert the string to an array, reverse it, and join it back.',
+                        'function_name' => 'reverse_string',
+                        'hint' => 'Use slicing s[::-1] or join reversed characters.',
                         'test_cases' => [
                             ['input' => 'hello', 'expected_output' => 'olleh'],
                             ['input' => 'world', 'expected_output' => 'dlrow'],
@@ -135,53 +156,26 @@ class ExerciseSeeder extends Seeder
                     ],
                     [
                         'title' => 'Valid Palindrome',
-                        'content' => "Check if a string is a palindrome, considering only alphanumeric characters and ignoring cases.\n\nExample:\nInput: \"A man, a plan, a canal: Panama\"\nOutput: true\n\nExample 2:\nInput: \"race a car\"\nOutput: false",
+                        'content' => "Write a function called `is_palindrome` that checks if a string is a palindrome.\n\n**Function Signature:**\n```python\ndef is_palindrome(s):\n    # Your code here\n```\n\n**Example:**\n- Input: \"A man, a plan, a canal: Panama\"\n- Output: true\n\n**Note:** Consider only alphanumeric characters and ignore cases.",
                         'difficulty' => 'easy',
+                        'function_name' => 'is_palindrome',
                         'hint' => 'Remove non-alphanumeric characters, convert to lowercase, then compare with its reverse.',
                         'test_cases' => [
-                            ['input' => 'A man, a plan, a canal: Panama', 'expected_output' => 'true'],
-                            ['input' => 'race a car', 'expected_output' => 'false'],
-                            ['input' => ' ', 'expected_output' => 'true'],
+                            ['input' => 'racecar', 'expected_output' => 'true'],
+                            ['input' => 'hello', 'expected_output' => 'false'],
+                            ['input' => 'a', 'expected_output' => 'true'],
                         ],
                     ],
                     [
                         'title' => 'Count Vowels',
-                        'content' => "Write a function that counts the number of vowels (a, e, i, o, u) in a string.\n\nExample:\nInput: \"Hello World\"\nOutput: 3\n\nNote: Count both uppercase and lowercase vowels.",
+                        'content' => "Write a function called `count_vowels` that counts the number of vowels in a string.\n\n**Function Signature:**\n```python\ndef count_vowels(s):\n    # Your code here\n```\n\n**Example:**\n- Input: \"Hello World\"\n- Output: 3",
                         'difficulty' => 'easy',
+                        'function_name' => 'count_vowels',
                         'hint' => 'Convert to lowercase and check each character against a set of vowels.',
                         'test_cases' => [
                             ['input' => 'Hello World', 'expected_output' => '3'],
                             ['input' => 'AEIOU', 'expected_output' => '5'],
                             ['input' => 'xyz', 'expected_output' => '0'],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'title' => 'String Patterns',
-                'description' => 'Work with string patterns, matching, and advanced manipulations.',
-                'category' => 'Strings',
-                'problems' => [
-                    [
-                        'title' => 'Longest Substring Without Repeating',
-                        'content' => "Find the length of the longest substring without repeating characters.\n\nExample:\nInput: \"abcabcbb\"\nOutput: 3 (The answer is \"abc\")\n\nExample 2:\nInput: \"bbbbb\"\nOutput: 1 (The answer is \"b\")",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use a sliding window approach with a set to track characters in the current window.',
-                        'test_cases' => [
-                            ['input' => 'abcabcbb', 'expected_output' => '3'],
-                            ['input' => 'bbbbb', 'expected_output' => '1'],
-                            ['input' => 'pwwkew', 'expected_output' => '3'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Valid Anagram',
-                        'content' => "Given two strings s and t, return true if t is an anagram of s, and false otherwise.\n\nAn anagram is a word formed by rearranging the letters of another word.\n\nExample:\nInput: s = \"anagram\", t = \"nagaram\"\nOutput: true",
-                        'difficulty' => 'easy',
-                        'hint' => 'Count the frequency of each character in both strings and compare.',
-                        'test_cases' => [
-                            ['input' => 's=anagram, t=nagaram', 'expected_output' => 'true'],
-                            ['input' => 's=rat, t=car', 'expected_output' => 'false'],
-                            ['input' => 's=listen, t=silent', 'expected_output' => 'true'],
                         ],
                     ],
                 ],
@@ -194,8 +188,9 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Factorial',
-                        'content' => "Calculate the factorial of a given non-negative integer.\n\nFactorial of n (n!) = n × (n-1) × (n-2) × ... × 1\n\nExample:\nInput: 5\nOutput: 120 (5! = 5 × 4 × 3 × 2 × 1 = 120)\n\nConstraints:\n- 0 <= n <= 12",
+                        'content' => "Write a function called `factorial` that calculates the factorial of a number.\n\n**Function Signature:**\n```python\ndef factorial(n):\n    # Your code here\n```\n\n**Example:**\n- Input: 5\n- Output: 120 (5! = 5 × 4 × 3 × 2 × 1)\n\n**Constraints:** 0 <= n <= 12",
                         'difficulty' => 'easy',
+                        'function_name' => 'factorial',
                         'hint' => 'Use a loop starting from 1 to n, multiplying each number. Remember that 0! = 1.',
                         'test_cases' => [
                             ['input' => '5', 'expected_output' => '120'],
@@ -204,10 +199,11 @@ class ExerciseSeeder extends Seeder
                         ],
                     ],
                     [
-                        'title' => 'Fibonacci Sequence',
-                        'content' => "Return the nth number in the Fibonacci sequence.\n\nFibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...\n\nExample:\nInput: 7\nOutput: 13 (0-indexed: F(7) = 13)\n\nConstraints:\n- 0 <= n <= 30",
+                        'title' => 'Fibonacci',
+                        'content' => "Write a function called `fibonacci` that returns the nth Fibonacci number.\n\n**Function Signature:**\n```python\ndef fibonacci(n):\n    # Your code here\n```\n\n**Example:**\n- Input: 7\n- Output: 13 (sequence: 0, 1, 1, 2, 3, 5, 8, 13...)\n\n**Constraints:** 0 <= n <= 30",
                         'difficulty' => 'easy',
-                        'hint' => 'Each number is the sum of the two preceding numbers. Use iteration or recursion.',
+                        'function_name' => 'fibonacci',
+                        'hint' => 'Each number is the sum of the two preceding numbers.',
                         'test_cases' => [
                             ['input' => '7', 'expected_output' => '13'],
                             ['input' => '0', 'expected_output' => '0'],
@@ -215,14 +211,16 @@ class ExerciseSeeder extends Seeder
                         ],
                     ],
                     [
-                        'title' => 'Prime Number Check',
-                        'content' => "Determine if a given number is prime.\n\nA prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\nExample:\nInput: 17\nOutput: true\n\nExample 2:\nInput: 15\nOutput: false (divisible by 3 and 5)",
+                        'title' => 'Is Prime',
+                        'content' => "Write a function called `is_prime` that checks if a number is prime.\n\n**Function Signature:**\n```python\ndef is_prime(n):\n    # Your code here\n```\n\n**Example:**\n- Input: 17\n- Output: true",
                         'difficulty' => 'easy',
+                        'function_name' => 'is_prime',
                         'hint' => 'Check if any number from 2 to √n divides n evenly.',
                         'test_cases' => [
                             ['input' => '17', 'expected_output' => 'true'],
                             ['input' => '15', 'expected_output' => 'false'],
                             ['input' => '2', 'expected_output' => 'true'],
+                            ['input' => '1', 'expected_output' => 'false'],
                         ],
                     ],
                 ],
@@ -234,125 +232,27 @@ class ExerciseSeeder extends Seeder
                 'category' => 'Functions',
                 'problems' => [
                     [
-                        'title' => 'Calculator Function',
-                        'content' => "Create a calculator function that takes two numbers and an operator (+, -, *, /) and returns the result.\n\nExample:\nInput: 10, 5, '+'\nOutput: 15\n\nExample 2:\nInput: 10, 5, '/'\nOutput: 2\n\nHandle division by zero by returning 'Error'.",
+                        'title' => 'Calculator',
+                        'content' => "Write a function called `calculate` that performs basic arithmetic.\n\n**Function Signature:**\n```python\ndef calculate(a, b, op):\n    # Your code here\n```\n\n**Example:**\n- Input: a=10, b=5, op='+'\n- Output: 15\n\n**Operators:** +, -, *, /\n**Note:** Return 'Error' for division by zero.",
                         'difficulty' => 'easy',
-                        'hint' => 'Use a switch statement or if-else to handle different operators.',
+                        'function_name' => 'calculate',
+                        'hint' => 'Use if-else or match statement to handle different operators.',
                         'test_cases' => [
-                            ['input' => '10, 5, +', 'expected_output' => '15'],
-                            ['input' => '10, 5, *', 'expected_output' => '50'],
-                            ['input' => '10, 0, /', 'expected_output' => 'Error'],
+                            ['input' => "a=10, b=5, op='+'", 'expected_output' => '15'],
+                            ['input' => "a=10, b=5, op='*'", 'expected_output' => '50'],
+                            ['input' => "a=10, b=0, op='/'", 'expected_output' => 'Error'],
                         ],
                     ],
                     [
                         'title' => 'Temperature Converter',
-                        'content' => "Write a function that converts temperature between Celsius and Fahrenheit.\n\nFormulas:\n- C to F: F = (C × 9/5) + 32\n- F to C: C = (F - 32) × 5/9\n\nExample:\nInput: 100, 'C'\nOutput: 212 (100°C = 212°F)",
+                        'content' => "Write a function called `convert_temp` that converts temperature.\n\n**Function Signature:**\n```python\ndef convert_temp(temp, unit):\n    # Your code here\n```\n\n**Example:**\n- Input: temp=100, unit='C'\n- Output: 212 (Celsius to Fahrenheit)\n\n**Formulas:**\n- C to F: F = (C × 9/5) + 32\n- F to C: C = (F - 32) × 5/9",
                         'difficulty' => 'easy',
+                        'function_name' => 'convert_temp',
                         'hint' => 'Check the unit parameter and apply the appropriate formula.',
                         'test_cases' => [
-                            ['input' => '100, C', 'expected_output' => '212'],
-                            ['input' => '32, F', 'expected_output' => '0'],
-                            ['input' => '0, C', 'expected_output' => '32'],
-                        ],
-                    ],
-                ],
-            ],
-            // Algorithms Category
-            [
-                'title' => 'Sorting Algorithms',
-                'description' => 'Implement and understand fundamental sorting algorithms.',
-                'category' => 'Algorithms',
-                'problems' => [
-                    [
-                        'title' => 'Bubble Sort',
-                        'content' => "Implement the bubble sort algorithm to sort an array of integers in ascending order.\n\nExample:\nInput: [64, 34, 25, 12, 22, 11, 90]\nOutput: [11, 12, 22, 25, 34, 64, 90]\n\nBubble sort repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use nested loops. The outer loop controls passes, the inner loop compares adjacent elements.',
-                        'test_cases' => [
-                            ['input' => '[64, 34, 25, 12, 22, 11, 90]', 'expected_output' => '[11, 12, 22, 25, 34, 64, 90]'],
-                            ['input' => '[5, 4, 3, 2, 1]', 'expected_output' => '[1, 2, 3, 4, 5]'],
-                            ['input' => '[1]', 'expected_output' => '[1]'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Binary Search',
-                        'content' => "Implement binary search to find the index of a target value in a sorted array.\n\nReturn -1 if the target is not found.\n\nExample:\nInput: arr = [1, 3, 5, 7, 9, 11], target = 7\nOutput: 3\n\nConstraints:\n- Array is sorted in ascending order\n- All elements are unique",
-                        'difficulty' => 'medium',
-                        'hint' => 'Compare the target with the middle element. If target is smaller, search left half; if larger, search right half.',
-                        'test_cases' => [
-                            ['input' => 'arr=[1,3,5,7,9,11], target=7', 'expected_output' => '3'],
-                            ['input' => 'arr=[1,3,5,7,9,11], target=1', 'expected_output' => '0'],
-                            ['input' => 'arr=[1,3,5,7,9,11], target=6', 'expected_output' => '-1'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Merge Sort',
-                        'content' => "Implement the merge sort algorithm to sort an array.\n\nMerge sort is a divide-and-conquer algorithm that:\n1. Divides the array into two halves\n2. Recursively sorts each half\n3. Merges the sorted halves\n\nExample:\nInput: [38, 27, 43, 3, 9, 82, 10]\nOutput: [3, 9, 10, 27, 38, 43, 82]",
-                        'difficulty' => 'hard',
-                        'hint' => 'First implement a merge function that combines two sorted arrays, then use recursion to divide and conquer.',
-                        'test_cases' => [
-                            ['input' => '[38, 27, 43, 3, 9, 82, 10]', 'expected_output' => '[3, 9, 10, 27, 38, 43, 82]'],
-                            ['input' => '[5, 2, 8, 1, 9]', 'expected_output' => '[1, 2, 5, 8, 9]'],
-                            ['input' => '[1]', 'expected_output' => '[1]'],
-                        ],
-                    ],
-                ],
-            ],
-            // Data Structures Category
-            [
-                'title' => 'Stack Operations',
-                'description' => 'Learn stack data structure and its applications.',
-                'category' => 'Data Structures',
-                'problems' => [
-                    [
-                        'title' => 'Valid Parentheses',
-                        'content' => "Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nA string is valid if:\n1. Open brackets are closed by the same type of brackets\n2. Open brackets are closed in the correct order\n\nExample:\nInput: \"()[]{}\"\nOutput: true\n\nExample 2:\nInput: \"([)]\"\nOutput: false",
-                        'difficulty' => 'easy',
-                        'hint' => 'Use a stack. Push opening brackets and pop when you see a closing bracket. Check if they match.',
-                        'test_cases' => [
-                            ['input' => '()[]{}', 'expected_output' => 'true'],
-                            ['input' => '([)]', 'expected_output' => 'false'],
-                            ['input' => '{[]}', 'expected_output' => 'true'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Min Stack',
-                        'content' => "Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\n\nImplement the MinStack class:\n- push(val) pushes the element onto the stack\n- pop() removes the element on top\n- top() gets the top element\n- getMin() retrieves the minimum element",
-                        'difficulty' => 'medium',
-                        'hint' => 'Maintain a second stack that keeps track of the minimum values.',
-                        'test_cases' => [
-                            ['input' => 'push(-2), push(0), push(-3), getMin()', 'expected_output' => '-3'],
-                            ['input' => 'push(1), push(2), top()', 'expected_output' => '2'],
-                            ['input' => 'push(3), push(1), pop(), getMin()', 'expected_output' => '3'],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'title' => 'Linked Lists',
-                'description' => 'Master linked list operations and problem-solving techniques.',
-                'category' => 'Data Structures',
-                'problems' => [
-                    [
-                        'title' => 'Reverse Linked List',
-                        'content' => "Reverse a singly linked list.\n\nExample:\nInput: 1 -> 2 -> 3 -> 4 -> 5\nOutput: 5 -> 4 -> 3 -> 2 -> 1\n\nConstraints:\n- List length: 0-5000\n- Node values: -5000 to 5000",
-                        'difficulty' => 'easy',
-                        'hint' => 'Use three pointers: prev, current, and next. Iterate through the list, reversing the direction of each link.',
-                        'test_cases' => [
-                            ['input' => '1->2->3->4->5', 'expected_output' => '5->4->3->2->1'],
-                            ['input' => '1->2', 'expected_output' => '2->1'],
-                            ['input' => '1', 'expected_output' => '1'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Detect Cycle',
-                        'content' => "Given a linked list, determine if it has a cycle.\n\nA cycle exists if some node can be reached again by continuously following the next pointer.\n\nExample:\nInput: 3 -> 2 -> 0 -> -4 (where -4 points back to 2)\nOutput: true\n\nExample 2:\nInput: 1 -> 2 (no cycle)\nOutput: false",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use Floyd\'s cycle detection algorithm with slow and fast pointers.',
-                        'test_cases' => [
-                            ['input' => '3->2->0->-4->cycle(2)', 'expected_output' => 'true'],
-                            ['input' => '1->2', 'expected_output' => 'false'],
-                            ['input' => '1->cycle(1)', 'expected_output' => 'true'],
+                            ['input' => "temp=100, unit='C'", 'expected_output' => '212.0'],
+                            ['input' => "temp=32, unit='F'", 'expected_output' => '0.0'],
+                            ['input' => "temp=0, unit='C'", 'expected_output' => '32.0'],
                         ],
                     ],
                 ],
@@ -365,9 +265,10 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Power of Two',
-                        'content' => "Determine if a given integer is a power of two.\n\nExample:\nInput: 16\nOutput: true (2^4 = 16)\n\nExample 2:\nInput: 18\nOutput: false\n\nConstraints:\n- -2^31 <= n <= 2^31 - 1",
+                        'content' => "Write a function called `is_power_of_two` that checks if a number is a power of two.\n\n**Function Signature:**\n```python\ndef is_power_of_two(n):\n    # Your code here\n```\n\n**Example:**\n- Input: 16\n- Output: true (2^4 = 16)",
                         'difficulty' => 'easy',
-                        'hint' => 'A power of two in binary has only one bit set. Use bit manipulation: n & (n-1) == 0 for positive n.',
+                        'function_name' => 'is_power_of_two',
+                        'hint' => 'A power of two in binary has only one bit set. Use n & (n-1) == 0 for positive n.',
                         'test_cases' => [
                             ['input' => '16', 'expected_output' => 'true'],
                             ['input' => '18', 'expected_output' => 'false'],
@@ -375,25 +276,67 @@ class ExerciseSeeder extends Seeder
                         ],
                     ],
                     [
-                        'title' => 'GCD (Greatest Common Divisor)',
-                        'content' => "Find the greatest common divisor of two positive integers.\n\nExample:\nInput: 48, 18\nOutput: 6\n\nThe GCD of 48 and 18 is 6 (both are divisible by 6, and no larger number divides both).",
+                        'title' => 'GCD',
+                        'content' => "Write a function called `gcd` that finds the greatest common divisor.\n\n**Function Signature:**\n```python\ndef gcd(a, b):\n    # Your code here\n```\n\n**Example:**\n- Input: a=48, b=18\n- Output: 6",
                         'difficulty' => 'easy',
+                        'function_name' => 'gcd',
                         'hint' => 'Use the Euclidean algorithm: GCD(a, b) = GCD(b, a mod b) until b becomes 0.',
                         'test_cases' => [
-                            ['input' => '48, 18', 'expected_output' => '6'],
-                            ['input' => '100, 25', 'expected_output' => '25'],
-                            ['input' => '17, 13', 'expected_output' => '1'],
+                            ['input' => 'a=48, b=18', 'expected_output' => '6'],
+                            ['input' => 'a=100, b=25', 'expected_output' => '25'],
+                            ['input' => 'a=17, b=13', 'expected_output' => '1'],
+                        ],
+                    ],
+                ],
+            ],
+            // Algorithms Category
+            [
+                'title' => 'Sorting Algorithms',
+                'description' => 'Implement and understand fundamental sorting algorithms.',
+                'category' => 'Algorithms',
+                'problems' => [
+                    [
+                        'title' => 'Bubble Sort',
+                        'content' => "Write a function called `bubble_sort` that sorts an array using bubble sort.\n\n**Function Signature:**\n```python\ndef bubble_sort(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [64, 34, 25, 12, 22, 11, 90]\n- Output: [11, 12, 22, 25, 34, 64, 90]",
+                        'difficulty' => 'medium',
+                        'function_name' => 'bubble_sort',
+                        'hint' => 'Use nested loops. The outer loop controls passes, the inner loop compares adjacent elements.',
+                        'test_cases' => [
+                            ['input' => '[64, 34, 25, 12, 22, 11, 90]', 'expected_output' => '[11,12,22,25,34,64,90]'],
+                            ['input' => '[5, 4, 3, 2, 1]', 'expected_output' => '[1,2,3,4,5]'],
+                            ['input' => '[1]', 'expected_output' => '[1]'],
                         ],
                     ],
                     [
-                        'title' => 'Roman to Integer',
-                        'content' => "Convert a Roman numeral to an integer.\n\nSymbol values:\nI = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000\n\nExample:\nInput: \"MCMXCIV\"\nOutput: 1994 (M=1000, CM=900, XC=90, IV=4)\n\nConstraints:\n- 1 <= num <= 3999",
+                        'title' => 'Binary Search',
+                        'content' => "Write a function called `binary_search` that finds an element in a sorted array.\n\n**Function Signature:**\n```python\ndef binary_search(arr, target):\n    # Your code here\n```\n\n**Example:**\n- Input: arr=[1,3,5,7,9,11], target=7\n- Output: 3 (index of target)\n\n**Note:** Return -1 if not found.",
                         'difficulty' => 'medium',
-                        'hint' => 'If a smaller value appears before a larger value, subtract it. Otherwise, add it.',
+                        'function_name' => 'binary_search',
+                        'hint' => 'Compare target with middle element. Search left half if smaller, right half if larger.',
                         'test_cases' => [
-                            ['input' => 'MCMXCIV', 'expected_output' => '1994'],
-                            ['input' => 'III', 'expected_output' => '3'],
-                            ['input' => 'LVIII', 'expected_output' => '58'],
+                            ['input' => 'arr=[1,3,5,7,9,11], target=7', 'expected_output' => '3'],
+                            ['input' => 'arr=[1,3,5,7,9,11], target=1', 'expected_output' => '0'],
+                            ['input' => 'arr=[1,3,5,7,9,11], target=6', 'expected_output' => '-1'],
+                        ],
+                    ],
+                ],
+            ],
+            // Data Structures Category
+            [
+                'title' => 'Stack Operations',
+                'description' => 'Learn stack data structure and its applications.',
+                'category' => 'Data Structures',
+                'problems' => [
+                    [
+                        'title' => 'Valid Parentheses',
+                        'content' => "Write a function called `is_valid` that checks if parentheses are balanced.\n\n**Function Signature:**\n```python\ndef is_valid(s):\n    # Your code here\n```\n\n**Example:**\n- Input: \"()[]{}\"\n- Output: true\n\n**Valid brackets:** (), [], {}",
+                        'difficulty' => 'easy',
+                        'function_name' => 'is_valid',
+                        'hint' => 'Use a stack. Push opening brackets, pop and check when you see closing brackets.',
+                        'test_cases' => [
+                            ['input' => '()[]{}', 'expected_output' => 'true'],
+                            ['input' => '([)]', 'expected_output' => 'false'],
+                            ['input' => '{[]}', 'expected_output' => 'true'],
                         ],
                     ],
                 ],
@@ -406,9 +349,10 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Sum of Digits',
-                        'content' => "Calculate the sum of digits of a positive integer using recursion.\n\nExample:\nInput: 12345\nOutput: 15 (1+2+3+4+5)\n\nConstraints:\n- 0 <= n <= 10^9",
+                        'content' => "Write a function called `sum_digits` that calculates sum of digits using recursion.\n\n**Function Signature:**\n```python\ndef sum_digits(n):\n    # Your code here\n```\n\n**Example:**\n- Input: 12345\n- Output: 15 (1+2+3+4+5)",
                         'difficulty' => 'easy',
-                        'hint' => 'Base case: if n < 10, return n. Recursive case: return (n % 10) + sumDigits(n / 10).',
+                        'function_name' => 'sum_digits',
+                        'hint' => 'Base case: if n < 10, return n. Recursive: return (n % 10) + sum_digits(n // 10).',
                         'test_cases' => [
                             ['input' => '12345', 'expected_output' => '15'],
                             ['input' => '999', 'expected_output' => '27'],
@@ -417,114 +361,14 @@ class ExerciseSeeder extends Seeder
                     ],
                     [
                         'title' => 'Power Function',
-                        'content' => "Implement pow(x, n), which calculates x raised to the power n.\n\nExample:\nInput: x = 2, n = 10\nOutput: 1024\n\nExample 2:\nInput: x = 2, n = -2\nOutput: 0.25\n\nUse recursion for an efficient O(log n) solution.",
+                        'content' => "Write a function called `power` that calculates x^n using recursion.\n\n**Function Signature:**\n```python\ndef power(x, n):\n    # Your code here\n```\n\n**Example:**\n- Input: x=2, n=10\n- Output: 1024",
                         'difficulty' => 'medium',
-                        'hint' => 'Use the property: x^n = (x^(n/2))^2 for even n, and x * x^(n-1) for odd n.',
+                        'function_name' => 'power',
+                        'hint' => 'Use the property: x^n = (x^(n/2))^2 for even n.',
                         'test_cases' => [
                             ['input' => 'x=2, n=10', 'expected_output' => '1024'],
-                            ['input' => 'x=2, n=-2', 'expected_output' => '0.25'],
                             ['input' => 'x=3, n=3', 'expected_output' => '27'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Generate Parentheses',
-                        'content' => "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.\n\nExample:\nInput: n = 3\nOutput: [\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]\n\nConstraints:\n- 1 <= n <= 8",
-                        'difficulty' => 'hard',
-                        'hint' => 'Use backtracking. Track the count of open and close parentheses used.',
-                        'test_cases' => [
-                            ['input' => '3', 'expected_output' => '["((()))","(()())","(())()","()(())","()()()"]'],
-                            ['input' => '1', 'expected_output' => '["()"]'],
-                            ['input' => '2', 'expected_output' => '["(())","()()"]'],
-                        ],
-                    ],
-                ],
-            ],
-            // Searching Category
-            [
-                'title' => 'Search Techniques',
-                'description' => 'Learn various searching algorithms and techniques.',
-                'category' => 'Searching',
-                'problems' => [
-                    [
-                        'title' => 'Linear Search',
-                        'content' => "Implement linear search to find the index of a target element in an array.\n\nReturn -1 if the element is not found.\n\nExample:\nInput: arr = [5, 3, 8, 4, 2], target = 8\nOutput: 2",
-                        'difficulty' => 'easy',
-                        'hint' => 'Iterate through each element and compare with the target.',
-                        'test_cases' => [
-                            ['input' => 'arr=[5,3,8,4,2], target=8', 'expected_output' => '2'],
-                            ['input' => 'arr=[1,2,3], target=5', 'expected_output' => '-1'],
-                            ['input' => 'arr=[7], target=7', 'expected_output' => '0'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Find First and Last Position',
-                        'content' => "Given a sorted array and a target value, find the starting and ending position of the target.\n\nReturn [-1, -1] if target is not found.\n\nExample:\nInput: nums = [5,7,7,8,8,10], target = 8\nOutput: [3, 4]",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use binary search twice - once to find the leftmost position and once for the rightmost.',
-                        'test_cases' => [
-                            ['input' => 'nums=[5,7,7,8,8,10], target=8', 'expected_output' => '[3, 4]'],
-                            ['input' => 'nums=[5,7,7,8,8,10], target=6', 'expected_output' => '[-1, -1]'],
-                            ['input' => 'nums=[1], target=1', 'expected_output' => '[0, 0]'],
-                        ],
-                    ],
-                ],
-            ],
-            // Sorting Category
-            [
-                'title' => 'Advanced Sorting',
-                'description' => 'Master advanced sorting algorithms and techniques.',
-                'category' => 'Sorting',
-                'problems' => [
-                    [
-                        'title' => 'Quick Sort',
-                        'content' => "Implement the quick sort algorithm.\n\nQuick sort uses divide-and-conquer:\n1. Pick a pivot element\n2. Partition array around pivot\n3. Recursively sort subarrays\n\nExample:\nInput: [10, 7, 8, 9, 1, 5]\nOutput: [1, 5, 7, 8, 9, 10]",
-                        'difficulty' => 'hard',
-                        'hint' => 'Choose the last element as pivot, partition the array, then recursively sort.',
-                        'test_cases' => [
-                            ['input' => '[10, 7, 8, 9, 1, 5]', 'expected_output' => '[1, 5, 7, 8, 9, 10]'],
-                            ['input' => '[3, 2, 1]', 'expected_output' => '[1, 2, 3]'],
-                            ['input' => '[1]', 'expected_output' => '[1]'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Sort Colors',
-                        'content' => "Given an array with n objects colored red, white, or blue (0, 1, 2), sort them in-place.\n\nExample:\nInput: [2, 0, 2, 1, 1, 0]\nOutput: [0, 0, 1, 1, 2, 2]\n\nSolve it without using the library's sort function.",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use the Dutch National Flag algorithm with three pointers.',
-                        'test_cases' => [
-                            ['input' => '[2, 0, 2, 1, 1, 0]', 'expected_output' => '[0, 0, 1, 1, 2, 2]'],
-                            ['input' => '[2, 0, 1]', 'expected_output' => '[0, 1, 2]'],
-                            ['input' => '[0]', 'expected_output' => '[0]'],
-                        ],
-                    ],
-                ],
-            ],
-            // Bit Manipulation Category
-            [
-                'title' => 'Bit Manipulation Basics',
-                'description' => 'Learn to work with binary operations and bit manipulation.',
-                'category' => 'Bit Manipulation',
-                'problems' => [
-                    [
-                        'title' => 'Single Number',
-                        'content' => "Given a non-empty array where every element appears twice except for one, find that single one.\n\nExample:\nInput: [4, 1, 2, 1, 2]\nOutput: 4\n\nSolve in linear time using constant extra space.",
-                        'difficulty' => 'easy',
-                        'hint' => 'Use XOR operation. XOR of a number with itself is 0, and XOR with 0 is the number.',
-                        'test_cases' => [
-                            ['input' => '[4, 1, 2, 1, 2]', 'expected_output' => '4'],
-                            ['input' => '[2, 2, 1]', 'expected_output' => '1'],
-                            ['input' => '[1]', 'expected_output' => '1'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Count Set Bits',
-                        'content' => "Count the number of 1 bits (set bits) in the binary representation of a number.\n\nExample:\nInput: 11 (binary: 1011)\nOutput: 3\n\nThis is also known as the Hamming weight.",
-                        'difficulty' => 'easy',
-                        'hint' => 'Use n & (n-1) to clear the rightmost set bit, counting iterations.',
-                        'test_cases' => [
-                            ['input' => '11', 'expected_output' => '3'],
-                            ['input' => '128', 'expected_output' => '1'],
-                            ['input' => '255', 'expected_output' => '8'],
+                            ['input' => 'x=5, n=0', 'expected_output' => '1'],
                         ],
                     ],
                 ],
@@ -537,8 +381,9 @@ class ExerciseSeeder extends Seeder
                 'problems' => [
                     [
                         'title' => 'Climbing Stairs',
-                        'content' => "You are climbing a staircase with n steps. Each time you can climb 1 or 2 steps.\n\nHow many distinct ways can you climb to the top?\n\nExample:\nInput: n = 3\nOutput: 3 (1+1+1, 1+2, 2+1)",
+                        'content' => "Write a function called `climb_stairs` that counts ways to climb n stairs.\n\n**Function Signature:**\n```python\ndef climb_stairs(n):\n    # Your code here\n```\n\n**Example:**\n- Input: n=3\n- Output: 3 (1+1+1, 1+2, 2+1)\n\n**Note:** You can climb 1 or 2 steps at a time.",
                         'difficulty' => 'easy',
+                        'function_name' => 'climb_stairs',
                         'hint' => 'This is similar to Fibonacci. ways(n) = ways(n-1) + ways(n-2).',
                         'test_cases' => [
                             ['input' => '3', 'expected_output' => '3'],
@@ -546,86 +391,104 @@ class ExerciseSeeder extends Seeder
                             ['input' => '1', 'expected_output' => '1'],
                         ],
                     ],
+                ],
+            ],
+            // Bit Manipulation Category
+            [
+                'title' => 'Bit Manipulation Basics',
+                'description' => 'Learn to work with binary operations and bit manipulation.',
+                'category' => 'Bit Manipulation',
+                'problems' => [
                     [
-                        'title' => 'House Robber',
-                        'content' => "You are a robber planning to rob houses along a street. Each house has money, but you cannot rob two adjacent houses.\n\nFind the maximum amount you can rob.\n\nExample:\nInput: [2, 7, 9, 3, 1]\nOutput: 12 (rob house 1, 3, 5: 2 + 9 + 1 = 12)",
-                        'difficulty' => 'medium',
-                        'hint' => 'For each house, decide: max(rob this + dp[i-2], skip and take dp[i-1]).',
+                        'title' => 'Single Number',
+                        'content' => "Write a function called `single_number` that finds the element appearing once.\n\n**Function Signature:**\n```python\ndef single_number(nums):\n    # Your code here\n```\n\n**Example:**\n- Input: [4, 1, 2, 1, 2]\n- Output: 4\n\n**Note:** Every element appears twice except for one.",
+                        'difficulty' => 'easy',
+                        'function_name' => 'single_number',
+                        'hint' => 'Use XOR operation. XOR of a number with itself is 0.',
                         'test_cases' => [
-                            ['input' => '[2, 7, 9, 3, 1]', 'expected_output' => '12'],
-                            ['input' => '[1, 2, 3, 1]', 'expected_output' => '4'],
-                            ['input' => '[2, 1, 1, 2]', 'expected_output' => '4'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Longest Increasing Subsequence',
-                        'content' => "Find the length of the longest strictly increasing subsequence.\n\nExample:\nInput: [10, 9, 2, 5, 3, 7, 101, 18]\nOutput: 4 (The LIS is [2, 3, 7, 101])\n\nA subsequence doesn't need to be contiguous.",
-                        'difficulty' => 'hard',
-                        'hint' => 'Use DP where dp[i] = length of LIS ending at index i. Or use binary search for O(n log n).',
-                        'test_cases' => [
-                            ['input' => '[10, 9, 2, 5, 3, 7, 101, 18]', 'expected_output' => '4'],
-                            ['input' => '[0, 1, 0, 3, 2, 3]', 'expected_output' => '4'],
-                            ['input' => '[7, 7, 7, 7]', 'expected_output' => '1'],
+                            ['input' => '[4, 1, 2, 1, 2]', 'expected_output' => '4'],
+                            ['input' => '[2, 2, 1]', 'expected_output' => '1'],
+                            ['input' => '[1]', 'expected_output' => '1'],
                         ],
                     ],
                 ],
             ],
-            // Trees Category
+            // Searching Category
             [
-                'title' => 'Binary Tree Basics',
-                'description' => 'Learn fundamental binary tree operations and traversals.',
+                'title' => 'Search Techniques',
+                'description' => 'Learn various searching algorithms and techniques.',
+                'category' => 'Searching',
+                'problems' => [
+                    [
+                        'title' => 'Linear Search',
+                        'content' => "Write a function called `linear_search` that finds an element using linear search.\n\n**Function Signature:**\n```python\ndef linear_search(arr, target):\n    # Your code here\n```\n\n**Example:**\n- Input: arr=[5, 3, 8, 4, 2], target=8\n- Output: 2\n\n**Note:** Return -1 if not found.",
+                        'difficulty' => 'easy',
+                        'function_name' => 'linear_search',
+                        'hint' => 'Iterate through each element and compare with target.',
+                        'test_cases' => [
+                            ['input' => 'arr=[5,3,8,4,2], target=8', 'expected_output' => '2'],
+                            ['input' => 'arr=[1,2,3], target=5', 'expected_output' => '-1'],
+                            ['input' => 'arr=[7], target=7', 'expected_output' => '0'],
+                        ],
+                    ],
+                ],
+            ],
+            // Sorting Category
+            [
+                'title' => 'Sorting Basics',
+                'description' => 'Learn basic sorting algorithms.',
+                'category' => 'Sorting',
+                'problems' => [
+                    [
+                        'title' => 'Selection Sort',
+                        'content' => "Write a function called `selection_sort` that sorts using selection sort.\n\n**Function Signature:**\n```python\ndef selection_sort(arr):\n    # Your code here\n```\n\n**Example:**\n- Input: [64, 25, 12, 22, 11]\n- Output: [11, 12, 22, 25, 64]",
+                        'difficulty' => 'medium',
+                        'function_name' => 'selection_sort',
+                        'hint' => 'Find minimum in unsorted part and swap with first unsorted element.',
+                        'test_cases' => [
+                            ['input' => '[64, 25, 12, 22, 11]', 'expected_output' => '[11,12,22,25,64]'],
+                            ['input' => '[5, 4, 3, 2, 1]', 'expected_output' => '[1,2,3,4,5]'],
+                            ['input' => '[1]', 'expected_output' => '[1]'],
+                        ],
+                    ],
+                ],
+            ],
+            // Trees Category  
+            [
+                'title' => 'Tree Basics',
+                'description' => 'Learn fundamental tree operations.',
                 'category' => 'Trees',
                 'problems' => [
                     [
-                        'title' => 'Maximum Depth of Binary Tree',
-                        'content' => "Find the maximum depth (height) of a binary tree.\n\nThe maximum depth is the number of nodes along the longest path from root to leaf.\n\nExample:\nInput: [3, 9, 20, null, null, 15, 7]\nOutput: 3",
+                        'title' => 'Tree Height',
+                        'content' => "Write a function called `tree_height` that finds tree height from level representation.\n\n**Function Signature:**\n```python\ndef tree_height(nodes):\n    # Your code here\n```\n\n**Example:**\n- Input: [1, 2, 3, 4, 5] (5 nodes)\n- Output: 3 (height of complete binary tree)\n\n**Note:** Use formula: height = floor(log2(n)) + 1 for complete binary tree.",
                         'difficulty' => 'easy',
-                        'hint' => 'Use recursion: depth = 1 + max(depth(left), depth(right)).',
+                        'function_name' => 'tree_height',
+                        'hint' => 'For a complete binary tree, height = floor(log2(n)) + 1',
                         'test_cases' => [
-                            ['input' => '[3, 9, 20, null, null, 15, 7]', 'expected_output' => '3'],
-                            ['input' => '[1, null, 2]', 'expected_output' => '2'],
-                            ['input' => '[]', 'expected_output' => '0'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Invert Binary Tree',
-                        'content' => "Invert a binary tree (mirror it).\n\nExample:\nInput:     4\n         /   \\\n        2     7\n       / \\   / \\\n      1   3 6   9\n\nOutput:    4\n         /   \\\n        7     2\n       / \\   / \\\n      9   6 3   1",
-                        'difficulty' => 'easy',
-                        'hint' => 'Recursively swap the left and right children of each node.',
-                        'test_cases' => [
-                            ['input' => '[4,2,7,1,3,6,9]', 'expected_output' => '[4,7,2,9,6,3,1]'],
-                            ['input' => '[2,1,3]', 'expected_output' => '[2,3,1]'],
-                            ['input' => '[]', 'expected_output' => '[]'],
+                            ['input' => '[1, 2, 3, 4, 5]', 'expected_output' => '3'],
+                            ['input' => '[1]', 'expected_output' => '1'],
+                            ['input' => '[1, 2, 3, 4, 5, 6, 7]', 'expected_output' => '3'],
                         ],
                     ],
                 ],
             ],
             // Graphs Category
             [
-                'title' => 'Graph Traversal',
-                'description' => 'Learn graph traversal algorithms like BFS and DFS.',
+                'title' => 'Graph Basics',
+                'description' => 'Learn fundamental graph concepts.',
                 'category' => 'Graphs',
                 'problems' => [
                     [
-                        'title' => 'Number of Islands',
-                        'content' => "Given a 2D grid of '1's (land) and '0's (water), count the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.\n\nExample:\nInput: [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\nOutput: 3",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use DFS or BFS to explore and mark visited land cells.',
+                        'title' => 'Count Edges',
+                        'content' => "Write a function called `count_edges` that counts edges in an adjacency list.\n\n**Function Signature:**\n```python\ndef count_edges(adj_list):\n    # Your code here\n```\n\n**Example:**\n- Input: [[1,2], [0,2], [0,1]] (3 nodes connected)\n- Output: 3 (for undirected graph)",
+                        'difficulty' => 'easy',
+                        'function_name' => 'count_edges',
+                        'hint' => 'Sum all connections and divide by 2 for undirected graphs.',
                         'test_cases' => [
-                            ['input' => '[[1,1,0],[1,0,0],[0,0,1]]', 'expected_output' => '2'],
-                            ['input' => '[[1,1,1],[0,1,0],[1,1,1]]', 'expected_output' => '1'],
-                            ['input' => '[[0,0,0]]', 'expected_output' => '0'],
-                        ],
-                    ],
-                    [
-                        'title' => 'Clone Graph',
-                        'content' => "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.\n\nEach node contains a value and a list of its neighbors.",
-                        'difficulty' => 'medium',
-                        'hint' => 'Use a hash map to track visited nodes and their clones. Use BFS or DFS.',
-                        'test_cases' => [
-                            ['input' => '[[2,4],[1,3],[2,4],[1,3]]', 'expected_output' => '[[2,4],[1,3],[2,4],[1,3]]'],
-                            ['input' => '[[]]', 'expected_output' => '[[]]'],
-                            ['input' => '[]', 'expected_output' => '[]'],
+                            ['input' => '[[1,2], [0,2], [0,1]]', 'expected_output' => '3'],
+                            ['input' => '[[1], [0]]', 'expected_output' => '1'],
+                            ['input' => '[[]]', 'expected_output' => '0'],
                         ],
                     ],
                 ],

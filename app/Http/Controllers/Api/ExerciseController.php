@@ -31,7 +31,7 @@ class ExerciseController extends BaseController
      */
     public function index()
     {
-        $exercises = Exercise::paginate(10);
+        $exercises = Exercise::with('problems')->paginate(10);
         return ExerciseResource::collection($exercises);
     }
 

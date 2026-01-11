@@ -10,7 +10,7 @@ class Problem extends Model
     /** @use HasFactory<\Database\Factories\ProblemFactory> */
     use HasFactory;
 
-    protected $fillable = ['exercise_id', 'title', 'content', 'difficulty', 'hint'];
+    protected $fillable = ['exercise_id', 'title', 'content', 'difficulty', 'hint', 'function_name', 'input_type'];
 
     public function exercise()
     {
