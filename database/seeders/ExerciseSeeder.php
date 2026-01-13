@@ -493,6 +493,38 @@ class ExerciseSeeder extends Seeder
                     ],
                 ],
             ],
+            // Hard Challenges Category
+            [
+                'title' => 'Hard Challenges',
+                'description' => 'Advanced problems to test your algorithmic mastery.',
+                'category' => 'Hard Challenges',
+                'problems' => [
+                    [
+                        'title' => 'Median of Arrays',
+                        'content' => "Write a function called `find_median_sorted_arrays` that finds the median of two sorted arrays.\n\n**Function Signature:**\n```python\ndef find_median_sorted_arrays(nums1, nums2):\n    # Your code here\n```\n\n**Example:**\n- Input: nums1=[1,3], nums2=[2]\n- Output: 2.0\n\n**Constraints:**\n- Arrays sorted in ascending order\n- Time complexity should be O(log(m+n))",
+                        'difficulty' => 'hard',
+                        'function_name' => 'find_median_sorted_arrays',
+                        'hint' => 'Use binary search on partitions of the smaller array to find the correct cut.',
+                        'test_cases' => [
+                            ['input' => 'nums1=[1,3], nums2=[2]', 'expected_output' => '2.0'],
+                            ['input' => 'nums1=[1,2], nums2=[3,4]', 'expected_output' => '2.5'],
+                            ['input' => 'nums1=[0,0], nums2=[0,0]', 'expected_output' => '0.0'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Trapping Rain Water',
+                        'content' => "Write a function called `trap` that computes how much water can be trapped after raining.\n\n**Function Signature:**\n```python\ndef trap(height):\n    # Your code here\n```\n\n**Example:**\n- Input: [0,1,0,2,1,0,1,3,2,1,2,1]\n- Output: 6\n\n**Constraints:**\n- n non-negative integers representing elevation map",
+                        'difficulty' => 'hard',
+                        'function_name' => 'trap',
+                        'hint' => 'For each element, find max left and max right. Water level is min(max_left, max_right) - height.',
+                        'test_cases' => [
+                            ['input' => '[0,1,0,2,1,0,1,3,2,1,2,1]', 'expected_output' => '6'],
+                            ['input' => '[4,2,0,3,2,5]', 'expected_output' => '9'],
+                            ['input' => '[1,1]', 'expected_output' => '0'],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }

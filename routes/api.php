@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\LeaderboardController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\UserStatsController;
 use App\Http\Controllers\Api\DailyChallengeController;
+use App\Http\Controllers\Api\FcmController;
 
 use App\Http\Controllers\Api\AuthController;
 
@@ -28,10 +29,17 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::get('daily-challenge', [DailyChallengeController::class, 'index']);
 
 // Protected Routes
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () { // Auth User
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('/update-fcm-token', [FcmController::class, 'updateToken']);
+
+    // Notifications
+    Route::get('/notifications', [\App\Http\Controllers\Api\NotificationController::class, 'index']);
+    Route::post('/notifications/{id}/read', [\App\Http\Controllers\Api\NotificationController::class, 'markAsRead']);
+    Route::post('/notifications/read-all', [\App\Http\Controllers\Api\NotificationController::class, 'markAllAsRead']);
 
     // User stats and profile
     Route::get('user/stats', [UserStatsController::class, 'stats']);
