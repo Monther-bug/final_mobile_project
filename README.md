@@ -5,8 +5,10 @@ A robust Laravel-based backend API for a coding practice platform (similar to Le
 ## Features
 
 - **Authentication**: Secure user registration and login using Laravel Sanctum.
-- **Exercise Management**: Browse exercises and problems categorized by difficulty and topic.
-- **Code Validation Engine**: innovative service that validates user submissions against test cases.
+- **Exercise Management**: Browse exercises and problems from Easy to **Hard** levels.
+- **Code Validation Engine**: Innovative service that validates user submissions against test cases.
+- **Firebase Cloud Messaging (FCM)**: Push notification support for mobile devices.
+- **Notification Inbox**: In-app notification history and management.
 - **Progress Tracking**: Tracks user progress, completed exercises, and submission history.
 - **Advanced Features**: Leaderboards, hints system, and submission timers.
 - **API Documentation**: Integrated Swagger/OpenAPI documentation.
@@ -42,7 +44,17 @@ A robust Laravel-based backend API for a coding practice platform (similar to Le
    php artisan key:generate
    ```
 
-5. **Database Migration & Seeding:**
+5. **Firebase Configuration (Critical):**
+   - Download your service account private key from the Firebase Console.
+   - Rename it to `firebase_credentials.json`.
+   - Place it in: `storage/app/firebase/firebase_credentials.json`.
+   - Ensure your `.env` has:
+     ```env
+     FIREBASE_CREDENTIALS=storage/app/firebase/firebase_credentials.json
+     ```
+   - Run `php artisan config:clear`.
+
+6. **Database Migration & Seeding:**
    Run the content seeder to create the Admin user and sample exercises:
    ```bash
    php artisan migrate:fresh --seed
@@ -88,6 +100,9 @@ php artisan test
 - `GET /api/problems/{id}` - View problem details
 - `POST /api/solutions` - Submit code for validation
 - `GET /api/leaderboard` - View top users
+- `POST /api/update-fcm-token` - Update device push token
+- `GET /api/notifications` - Get notification history
+- `POST /api/notifications/read-all` - Mark all notifications as read
 
 ## License
 
