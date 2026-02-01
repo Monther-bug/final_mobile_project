@@ -17,7 +17,7 @@ A robust Laravel-based backend API for a coding practice platform (similar to Le
 
 - PHP >= 8.2
 - Composer
-- Database (MySQL, SQLite, etc.)
+- Database SQLit
 
 ## Installation
 
