@@ -16,7 +16,6 @@ A robust Laravel-based backend API for a coding practice platform (similar to Le
 ## Prerequisites
 
 - PHP >= 8.2
-- Composer
 - Database SQLit
 
 ## Installation
